@@ -6,7 +6,12 @@ const cors = require("cors");
 const port = 4000;
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
 app.use(router);
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
