@@ -2,15 +2,15 @@ const express = require("express");
 const app = express();
 const router = require("./routes/router");
 const cors = require("cors");
+const dotenv=require("dotenv");
 
-const port = 4000;
+dotenv.config();
+
+const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
-  })
+  cors()
 );
 app.use(router);
 app.use("/uploads", express.static(__dirname + "/uploads"));
